@@ -8,12 +8,15 @@ class HillClimbingAlgorithm:
     
     def __init__(self, heightmap: list) -> None:
         self.heightmap = heightmap
-    
-    def get_fewest_steps_required_part_one(self) -> int:
-        self.scan_map()
-        return self.get_fewest_steps_required_between_two_positions(self.starting_position, self.best_signal_position)
         
-    def get_fewest_steps_required_between_two_positions(self, frm, to) -> int:
+    def goal_reached(self, vertex):
+        return vertex.get_vertex_id() == self.best_signal_position
+    
+    def get_fewest_steps_required(self) -> int:
+        self.scan_map()
+        return self.get_fewest_steps_required_from_position(self.starting_position)
+        
+    def get_fewest_steps_required_from_position(self, frm) -> int:
         source = self.graph.get_vertex(frm)
         source.set_distance(0)
         unvisited_queue = [(v.get_distance(), v.get_vertex_id(), v) for v in self.graph]
@@ -30,7 +33,7 @@ class HillClimbingAlgorithm:
                     next.set_distance(new_dist)
                     next.set_previous(current)
                     
-                if next.get_vertex_id() == to:
+                if self.goal_reached(next):
                     return next.get_distance()
                     
             while len(unvisited_queue):
@@ -54,6 +57,8 @@ class HillClimbingAlgorithm:
         return ord(square)
     
     def scan_map(self):
+        self.basic_direction_condition = lambda slope: slope <= 1
+        self.inverse_direction_condition = lambda slope: slope >= -1
         self.heightmap_width = len(self.heightmap[0])
         self.heightmap_height = len(self.heightmap)
         self.graph = DirectedGraph()
@@ -67,30 +72,28 @@ class HillClimbingAlgorithm:
             for k, square in enumerate(row):
                 i = l * self.heightmap_width + k
                 self.discover_edges(i, square, k, row, l)
-                self.discover_extreme_positions(square, i)
+                
+                if square == 'S':
+                    self.starting_position = i
+                elif square == 'E':
+                    self.best_signal_position = i
                     
-    def discover_edges(self, i, square, k, row, l):        
+    def discover_edges(self, i, square, k, row, l):
         if k < self.heightmap_width - 1:
             right_square = row[k+1]
             slope = self.get_slope(square, right_square)
-            if slope <= 1:
+            if self.basic_direction_condition(slope):
                 self.graph.add_edge(i, i+1, 1)
-            if slope >= -1:
+            if self.inverse_direction_condition(slope):
                 self.graph.add_edge(i+1, i, 1)
             
         if l < self.heightmap_height - 1:
             down_square = self.heightmap[l+1][k]
             slope = self.get_slope(square, down_square)
-            if slope <= 1:
+            if self.basic_direction_condition(slope):
                 self.graph.add_edge(i, i+self.heightmap_width, 1)
-            if slope >= -1:
+            if self.inverse_direction_condition(slope):
                 self.graph.add_edge(i+self.heightmap_width, i, 1)
-                
-    def discover_extreme_positions(self, square, i):
-        if square == 'S':
-            self.starting_position = i
-        elif square == 'E':
-            self.best_signal_position = i
     
     def print_path(self):
         path = ['.'] * self.heightmap_width * self.heightmap_height
@@ -115,10 +118,45 @@ class HillClimbingAlgorithm:
         while i < len(path):
             print(''.join(path[i : i+self.heightmap_width]))
             i += self.heightmap_width
+            
+
+class HillClimbingAlgorithmPartTwo(HillClimbingAlgorithm):    
+        
+    def goal_reached(self, vertex):
+        return vertex.get_vertex_id() in self.lowest_positions
+    
+    def get_fewest_steps_required(self) -> int:
+        self.scan_map()
+        return self.get_fewest_steps_required_from_position(self.best_signal_position)
+    
+    def scan_map(self):
+        self.basic_direction_condition = lambda slope: slope >= -1
+        self.inverse_direction_condition = lambda slope: slope <= 1
+        self.heightmap_width = len(self.heightmap[0])
+        self.heightmap_height = len(self.heightmap)
+        self.graph = DirectedGraph()
+        self.lowest_positions = []
+        
+        for l, row in enumerate(self.heightmap):
+            for k, square in enumerate(row):
+                i = l * self.heightmap_width + k
+                self.graph.add_vertex(i)
+                
+        for l, row in enumerate(self.heightmap):
+            for k, square in enumerate(row):
+                i = l * self.heightmap_width + k
+                self.discover_edges(i, square, k, row, l)
+                
+                if square == 'S':
+                    self.starting_position = i
+                    self.lowest_positions.append(i)
+                elif square == 'E':
+                    self.best_signal_position = i
+                elif square == 'a':
+                    self.lowest_positions.append(i)
 
 with open('2022/input12.txt') as f:
     heightmap = [list(line.strip()) for line in f.readlines()]
-    algorithm = HillClimbingAlgorithm(heightmap)
-    steps = algorithm.get_fewest_steps_required_part_one()
-    algorithm.print_path()
+    algorithm = HillClimbingAlgorithmPartTwo(heightmap)
+    steps = algorithm.get_fewest_steps_required()
     print(steps)
