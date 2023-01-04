@@ -6,7 +6,7 @@ for i, letter in enumerate(string.ascii_letters, start=1):
         
 '''Part One'''
 # result = 0;
-# with open('input3.txt') as f:
+# with open('2022/input3.txt') as f:
 #     for line in f.readlines():
 #         line = line.strip()
 #         l = int(len(line) / 2)
@@ -28,7 +28,7 @@ def divide_chunks(l, n):
         yield l[i:i + n]
         
 result = 0;
-with open('input3.txt') as f:
+with open('2022/input3.txt') as f:
     chunks = list(divide_chunks(f.readlines(), 3))
     for chunk in chunks:
         first = chunk[0].strip()

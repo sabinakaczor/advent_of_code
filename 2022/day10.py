@@ -46,7 +46,7 @@ def part_one(register):
     total_signal_strength = reduce(lambda x, y: x + y, strengths)
     print(total_signal_strength)
     
-with open('input10.txt') as f:
+with open('2022/input10.txt') as f:
     register = RegisterX(1)
     for line in f:
         command = line.strip().split(' ')

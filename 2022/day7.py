@@ -74,7 +74,7 @@ def check_dir_size(dir_info):
     for dirname in dir_info['dirs']:
         check_dir_size(dir_info['dirs'][dirname])
         
-with open('input7.txt') as f:
+with open('2022/input7.txt') as f:
     for line in f:
         line = line.rstrip()
         command_mode = line[:2] == '$ '

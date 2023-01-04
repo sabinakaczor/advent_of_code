@@ -62,7 +62,7 @@ def find_highest_scenic_score(rows):
     return highest_score
 
 
-with open('input8.txt') as f:
+with open('2022/input8.txt') as f:
     rows = [line.strip() for line in f]
 
 '''Part One'''

@@ -44,7 +44,7 @@ def follow_procedure(step):
         crates[fromS] = crates[fromS][:-count]
         
 
-with open('input5.txt') as f:
+with open('2022/input5.txt') as f:
     steps_reached = False
     for line in f:
         if line == '\n':

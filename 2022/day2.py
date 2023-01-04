@@ -54,7 +54,7 @@ def calculate_round_score(opponent_choice, expected_outcome):
     return shape_scoring[player_choice] + outcome_scoring[expected_outcome]
 
 result = 0;
-with open('input2.txt') as f:
+with open('2022/input2.txt') as f:
     for line in f.readlines():
         line = line.strip()
         [opponent_choice, expected_outcome] = line.split(' ')

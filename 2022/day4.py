@@ -1,7 +1,7 @@
 '''Part One'''
 
 # result = 0;
-# with open('input4.txt') as f:
+# with open('2022/input4.txt') as f:
 #     for line in f.readlines():
 #         line = line.strip()
 #         ranges = line.split(',')
@@ -15,7 +15,7 @@
 '''Part Two'''
 
 result = 0;
-with open('input4.txt') as f:
+with open('2022/input4.txt') as f:
     for line in f.readlines():
         line = line.strip()
         ranges = line.split(',')

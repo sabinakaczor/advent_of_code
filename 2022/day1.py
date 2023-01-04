@@ -6,7 +6,7 @@ def get_sum(input_list):
 all_elves_data = []
 current_elf_data = []
 
-with open('input1.txt') as f:
+with open('2022/input1.txt') as f:
     for line in f.readlines():
         caloricity = line.rstrip()
         if caloricity:

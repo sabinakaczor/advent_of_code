@@ -118,7 +118,7 @@ def divide_chunks(l, n):
     for i in range(0, len(l), n):
         yield l[i:i + n]
 
-with open('input11.txt') as f:
+with open('2022/input11.txt') as f:
     lines = [line.strip() for line in f.readlines()]
     chunks = list(divide_chunks(lines, 7))
     for chunk in chunks:

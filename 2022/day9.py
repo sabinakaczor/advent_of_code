@@ -61,7 +61,7 @@ class Rope:
     def get_number_positions_of_visited_by_tail(self):
           return len(self.visited_by_tail)
       
-with open('input9.txt') as f:
+with open('2022/input9.txt') as f:
     r = Rope(10)
     for line in f:
         parts = line.strip().split(' ')

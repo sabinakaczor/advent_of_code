@@ -14,7 +14,7 @@ item_length = 4
 '''Part Two'''
 item_length = 14
 
-with open('input6.txt') as f:
+with open('2022/input6.txt') as f:
     stream = f.read()
     processed_stream = stream[:item_length-1]
     for s in stream[item_length-1:]:
