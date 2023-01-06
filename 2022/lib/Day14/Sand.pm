@@ -43,8 +43,13 @@ sub flood ($self, $cave)
 		}
 
 		$self->inc_generation;
-		$sand_lump = $sand_lump->clone;
 
+		# looks like we're done - sand entrace is blocked
+		return
+			if $sand_lump->x == $self->initial_pos->x
+			&& $sand_lump->y == $self->initial_pos->y;
+
+		$sand_lump = $sand_lump->clone;
 		while (-backtracing) {
 			if ($sand_lump->backtrace) {
 				if (!$cave->occupied($sand_lump)) {
