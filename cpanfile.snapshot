@@ -1,0 +1,131 @@
+# carton snapshot format: version 1.0
+DISTRIBUTIONS
+  Class-Method-Modifiers-2.13
+    pathname: E/ET/ETHER/Class-Method-Modifiers-2.13.tar.gz
+    provides:
+      Class::Method::Modifiers 2.13
+    requirements:
+      B 0
+      Carp 0
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      base 0
+      perl 5.006
+      strict 0
+      warnings 0
+  Exporter-Tiny-1.006000
+    pathname: T/TO/TOBYINK/Exporter-Tiny-1.006000.tar.gz
+    provides:
+      Exporter::Shiny 1.006000
+      Exporter::Tiny 1.006000
+    requirements:
+      ExtUtils::MakeMaker 6.17
+      perl 5.006001
+  Moo-2.005005
+    pathname: H/HA/HAARG/Moo-2.005005.tar.gz
+    provides:
+      Method::Generate::Accessor undef
+      Method::Generate::BuildAll undef
+      Method::Generate::Constructor undef
+      Method::Generate::DemolishAll undef
+      Moo 2.005005
+      Moo::HandleMoose undef
+      Moo::HandleMoose::FakeConstructor undef
+      Moo::HandleMoose::FakeMetaClass undef
+      Moo::HandleMoose::_TypeMap undef
+      Moo::Object undef
+      Moo::Role 2.005005
+      Moo::_Utils undef
+      Moo::sification undef
+      oo undef
+    requirements:
+      Carp 0
+      Class::Method::Modifiers 1.10
+      Exporter 0
+      ExtUtils::MakeMaker 0
+      Role::Tiny 2.002003
+      Scalar::Util 1.00
+      Sub::Defer 2.006006
+      Sub::Quote 2.006006
+      perl 5.006
+  Mooish-AttributeBuilder-1.003
+    pathname: B/BR/BRTASTIC/Mooish-AttributeBuilder-1.003.tar.gz
+    provides:
+      Mooish::AttributeBuilder 1.003
+    requirements:
+      ExtUtils::MakeMaker 0
+      perl 5.010
+  Role-Tiny-2.002004
+    pathname: H/HA/HAARG/Role-Tiny-2.002004.tar.gz
+    provides:
+      Role::Tiny 2.002004
+      Role::Tiny::With 2.002004
+    requirements:
+      Exporter 5.57
+      perl 5.006
+  Sub-Quote-2.006006
+    pathname: H/HA/HAARG/Sub-Quote-2.006006.tar.gz
+    provides:
+      Sub::Defer 2.006006
+      Sub::Quote 2.006006
+    requirements:
+      ExtUtils::MakeMaker 0
+      Scalar::Util 0
+      perl 5.006
+  Type-Tiny-2.002000
+    pathname: T/TO/TOBYINK/Type-Tiny-2.002000.tar.gz
+    provides:
+      Devel::TypeTiny::Perl58Compat 2.002000
+      Error::TypeTiny 2.002000
+      Error::TypeTiny::Assertion 2.002000
+      Error::TypeTiny::Compilation 2.002000
+      Error::TypeTiny::WrongNumberOfParameters 2.002000
+      Eval::TypeTiny 2.002000
+      Eval::TypeTiny::CodeAccumulator 2.002000
+      Reply::Plugin::TypeTiny 2.002000
+      Test::TypeTiny 2.002000
+      Type::Coercion 2.002000
+      Type::Coercion::FromMoose 2.002000
+      Type::Coercion::Union 2.002000
+      Type::Library 2.002000
+      Type::Params 2.002000
+      Type::Params::Alternatives 2.002000
+      Type::Params::Parameter 2.002000
+      Type::Params::Signature 2.002000
+      Type::Parser 2.002000
+      Type::Parser::AstBuilder 2.002000
+      Type::Parser::Token 2.002000
+      Type::Parser::TokenStream 2.002000
+      Type::Registry 2.002000
+      Type::Tie 2.002000
+      Type::Tie::ARRAY 2.002000
+      Type::Tie::BASE 2.002000
+      Type::Tie::HASH 2.002000
+      Type::Tie::SCALAR 2.002000
+      Type::Tiny 2.002000
+      Type::Tiny::Class 2.002000
+      Type::Tiny::ConstrainedObject 2.002000
+      Type::Tiny::Duck 2.002000
+      Type::Tiny::Enum 2.002000
+      Type::Tiny::Intersection 2.002000
+      Type::Tiny::Role 2.002000
+      Type::Tiny::Union 2.002000
+      Type::Utils 2.002000
+      Types::Common 2.002000
+      Types::Common::Numeric 2.002000
+      Types::Common::String 2.002000
+      Types::Standard 2.002000
+      Types::Standard::ArrayRef 2.002000
+      Types::Standard::CycleTuple 2.002000
+      Types::Standard::Dict 2.002000
+      Types::Standard::HashRef 2.002000
+      Types::Standard::Map 2.002000
+      Types::Standard::ScalarRef 2.002000
+      Types::Standard::StrMatch 2.002000
+      Types::Standard::Tied 2.002000
+      Types::Standard::Tuple 2.002000
+      Types::TypeTiny 2.002000
+    requirements:
+      Exporter::Tiny 1.006000
+      ExtUtils::MakeMaker 6.17
+      perl 5.008001
