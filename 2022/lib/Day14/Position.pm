@@ -5,7 +5,7 @@ use Moo;
 use Mooish::AttributeBuilder;
 use Types::Common;
 
-# This is an inteligent point which remembers where it fallen
+# This is an intelligent point which remembers where it felt
 extends 'Day14::Point';
 
 has field '_freefall_history' => (

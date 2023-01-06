@@ -29,7 +29,7 @@ sub inc_generation ($self)
 	$self->_set_generation($self->generation + 1);
 }
 
-sub flood ($self, $cave)
+sub pour ($self, $cave)
 {
 	my $sand_lump = $self->initial_pos->clone;
 	my $verbose = $self->verbose;

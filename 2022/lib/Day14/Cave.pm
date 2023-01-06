@@ -5,8 +5,6 @@ use Moo;
 use Mooish::AttributeBuilder;
 use Types::Common;
 
-use constant ROCK => '#';
-
 # this is a cave, duh
 
 has field 'lowest_wall' => (
@@ -160,6 +158,8 @@ sub find_next_sides ($self, $position)
 		if (!$self->occupied($next_side)) {
 			$position->set_x($next_side->[0]);
 			$position->set_y($next_side->[1]);
+			$position->fallen;
+
 			return 1;
 		}
 	}
