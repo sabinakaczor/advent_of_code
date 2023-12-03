@@ -6,10 +6,6 @@ class Solution(BaseSolution):
         'green': 13,
         'blue': 14,
     }
-    
-    def run(self):
-        print('Part 1:', self.part1(), sep=' ')
-        print('Part 2:', self.part2(), sep=' ')
         
     def part1(self):
         possible_games = []

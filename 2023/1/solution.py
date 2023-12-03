@@ -15,10 +15,6 @@ class Solution(BaseSolution):
         'eight': '8',
         'nine': '9',
     }
-    
-    def run(self):
-        print('Part 1:', self.part1(), sep=' ')
-        print('Part 2:', self.part2(), sep=' ')
         
     def part1(self):
         self.first_digit_pattern = re.compile(r'(?P<digit>\d)')

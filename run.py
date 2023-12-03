@@ -27,6 +27,10 @@ class BaseSolution:
             self.set_path(name[-1])
             
         return object.__getattribute__(self, name)
+    
+    def run(self):
+        print('Part 1:', self.part1(), sep=' ')
+        print('Part 2:', self.part2(), sep=' ')
             
     def set_path(self, part):
         self.input_filename = 'test{0}.txt'.format(part) if self.is_test else 'input.txt'
