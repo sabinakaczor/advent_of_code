@@ -1,6 +1,7 @@
 from run import BaseSolution
 
 class Solution(BaseSolution):
+    symbol = None
         
     def part1(self):
         total = 0
@@ -29,6 +30,34 @@ class Solution(BaseSolution):
             return True
         
         return False
+        
+    def part2(self):
+        self.symbol = '*'
+        total = 0
+        with self.path.open() as f:
+            chars_map = [list(line.rstrip()) for line in f]
+            self.build_maps(chars_map)
+            for row, cols in self.symbols_map.items():
+                for col in cols:
+                    total += self.find_gear_ratio(row, col)
+                    
+        return total
+
+    def find_gear_ratio(self, row, col):
+        numbers = []
+        for number, positions in self.numbers_map.items():
+            for pos_data in positions:
+                start, end = pos_data
+                if row < start[0] or row > end[0] or col < start[1] or col > end[1]:
+                    continue
+                numbers.append(number)
+                if len(numbers) > 2:
+                    return 0
+                
+        if len(numbers) < 2:
+            return 0
+        
+        return numbers[0] * numbers[1]
                             
     def build_maps(self, chars_map):
         self.symbols_map = {}
@@ -45,7 +74,7 @@ class Solution(BaseSolution):
                     start_pos = [row-1, col-1]
                 current_number += ch
             else:
-                if ch != '.':
+                if ch != '.' and (self.symbol is None or ch == self.symbol):
                     self.symbols_map[row].append(col)
                 if current_number:
                     self.add_number_data(current_number, row, col, start_pos)
@@ -64,6 +93,3 @@ class Solution(BaseSolution):
             self.numbers_map[number_int].append(pos_data)
         else:
             self.numbers_map[number_int] = [pos_data]
-        
-    def part2(self):
-        return 'Not implemented!'
