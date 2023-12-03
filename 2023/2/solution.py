@@ -1,6 +1,4 @@
 from run import BaseSolution
-import re
-from functools import reduce
 
 class Solution(BaseSolution):
     bag_content = {
