@@ -2,7 +2,7 @@ from run import BaseSolution
 
 class Solution(BaseSolution):
     symbol = None
-        
+
     def part1(self):
         total = 0
         with self.path.open() as f:
@@ -12,12 +12,12 @@ class Solution(BaseSolution):
                 for pos_data in positions:
                     if self.number_has_symbol(pos_data):
                         total += number
-                    
+
         return total
 
     def number_has_symbol(self, pos_data):
         start, end = pos_data
-        
+
         # check the rows over and below the number row
         for x in [start[0], end[0]]:
             for y in range(start[1], end[1] + 1):
@@ -28,9 +28,9 @@ class Solution(BaseSolution):
         number_row_symbols = self.symbols_map.get(start[0] + 1, [])
         if start[1] in number_row_symbols or end[1] in number_row_symbols:
             return True
-        
+
         return False
-        
+
     def part2(self):
         self.symbol = '*'
         total = 0
@@ -40,7 +40,7 @@ class Solution(BaseSolution):
             for row, cols in self.symbols_map.items():
                 for col in cols:
                     total += self.find_gear_ratio(row, col)
-                    
+
         return total
 
     def find_gear_ratio(self, row, col):
@@ -53,19 +53,19 @@ class Solution(BaseSolution):
                 numbers.append(number)
                 if len(numbers) > 2:
                     return 0
-                
+
         if len(numbers) < 2:
             return 0
-        
+
         return numbers[0] * numbers[1]
-                            
+
     def build_maps(self, chars_map):
         self.symbols_map = {}
         self.numbers_map = {}
         for row, line in enumerate(chars_map, start=1):
             self.symbols_map[row] = []
             self.parse_line(line, row)
-                
+
     def parse_line(self, line, row):
         current_number = ''
         for col, ch in enumerate(line, start=1):
@@ -81,7 +81,7 @@ class Solution(BaseSolution):
                     current_number = ''
         if current_number:
             self.add_number_data(current_number, row, col, start_pos)
-    
+
     def add_number_data(self, current_number, row, col, start_pos):
         end_pos = [row+1, col]
         pos_data = (
