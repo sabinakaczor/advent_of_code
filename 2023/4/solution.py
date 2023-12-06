@@ -2,7 +2,6 @@ from run import BaseSolution
 import re
 
 class Solution(BaseSolution):
-    symbol = None
         
     def part1(self):
         total = 0
