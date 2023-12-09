@@ -18,19 +18,19 @@ class Solution(BaseSolution):
                     return steps
 
     def part2(self):
-        self.instructions, self.network_map = self.parse_input()
-        current_nodes = [node for node in self.network_map if node[-1] == 'A']
+        instructions, network_map = self.parse_input()
+        current_nodes = [node for node in network_map if node[-1] == 'A']
         steps_list = []
         for node in current_nodes:
-            steps_list.append(self.count_steps_for_node(node))
+            steps_list.append(self.count_steps_for_node(node, instructions, network_map))
         return reduce(lowest_common_multiple, steps_list)
 
-    def count_steps_for_node(self, node):
+    def count_steps_for_node(self, node, instructions, network_map):
         steps = 0
         while node[-1] != 'Z':
-            for index in self.instructions:
+            for index in instructions:
                 steps += 1
-                node = self.network_map[node][index]
+                node = network_map[node][index]
                 if node[-1] == 'Z':
                     return steps
 
@@ -39,10 +39,10 @@ class Solution(BaseSolution):
         instructions = ''
         with self.path.open() as f:
             lines = f.readlines()
-            instructions = lines[0].strip()
+            instructions = [0 if ch == 'L' else 1 for ch in lines[0].strip()]
             pattern = re.compile(r'^(\w{3}) = \((\w{3}), (\w{3})\)$')
             for line in lines[2:]:
                 m = re.match(pattern, line.strip())
                 nodes = m.groups()
-                network_map[nodes[0]] = {'L': nodes[1], 'R': nodes[2]}
+                network_map[nodes[0]] = nodes[1:]
         return instructions, network_map
