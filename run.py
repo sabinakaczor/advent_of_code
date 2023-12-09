@@ -26,21 +26,19 @@ class Runner:
         mod = importlib.import_module('{y}.{d}.solution'.format(y = self.year, d = self.day))
         solution = mod.Solution(self.test)
 
+        print(f'DAY {self.day}:', end='\n\n')
+
         if self.part is None or self.part == '1':
+            solution.set_path(1)
             solution.part_one()
 
         if self.part is None or self.part == '2':
+            solution.set_path(2)
             solution.part_two()
 
 class BaseSolution:
     def __init__(self, is_test) -> None:
         self.is_test = is_test
-
-    def __getattribute__(self, name):
-        if name.startswith('part'):
-            self.set_path(name[-1])
-
-        return object.__getattribute__(self, name)
 
     @timer
     def part_one(self,):
@@ -51,12 +49,12 @@ class BaseSolution:
         return self.part2()
 
     def set_path(self, part):
-        self.input_filename = 'test{0}.txt'.format(part) if self.is_test else 'input.txt'
+        self.input_filename = f'test{part}.txt' if self.is_test else 'input.txt'
         self.path = Path(inspect.getfile(self.__class__)).with_name(self.input_filename)
 
 
 if __name__ == "__main__":
-    day = sys.argv[1]
+    day = sys.argv[1] if len(sys.argv) >= 2 and sys.argv[1].isnumeric() else None
     test = 'test' in sys.argv
 
     part = None
@@ -65,6 +63,11 @@ if __name__ == "__main__":
             part = arg.split('=')[-1]
             break
 
-    runner = Runner(day, test, part)
-    runner.run()
+    days = [day] if day else range(1, 26)
+    for day in days:
+        try:
+            runner = Runner(day, test, part)
+            runner.run()
+        except ModuleNotFoundError:
+            print(f'Day {day} not implemented!')
 
