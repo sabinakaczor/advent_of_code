@@ -30,23 +30,23 @@ class Runner:
 
         if self.part is None or self.part == '1':
             solution.set_path(1)
-            solution.part_one()
+            solution.run_part(1)
 
         if self.part is None or self.part == '2':
             solution.set_path(2)
-            solution.part_two()
+            solution.run_part(2)
 
 class BaseSolution:
     def __init__(self, is_test) -> None:
         self.is_test = is_test
 
     @timer
-    def part_one(self,):
-        return self.part1()
-
-    @timer
-    def part_two(self,):
-        return self.part2()
+    def run_part(self, part_no):
+        func = f'part{part_no}'
+        if not hasattr(self, func):
+            print(f'Part {part_no} not implemented!', end="\n\n")
+        else:
+            return self.__getattribute__(func)()
 
     def set_path(self, part):
         self.input_filename = f'test{part}.txt' if self.is_test else 'input.txt'
